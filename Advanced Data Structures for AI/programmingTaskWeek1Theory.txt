@@ -1,0 +1,42 @@
+(A) Insertion Algorithm
+
+AFTER COMPARING j WITH ALL ELEMENTS IN ARRAY A AND HEAP H,                   (complexity = O(n)) --------- (1)
+
+A.1. If j is smaller than all the elements in heap H, and j is smaller the greatest element in array A, j belongs to least-k elements, sorted array A:
+i.   we push the greatest element in array A to the heap H and heap sort H   (complexity = O(nlogn)) --------- (2)
+ii.  there is an empty space in the pre-defined array A      
+iii. we add element j to the array A                                         
+iv.  we sort the array A (k remains constant)                               (complexity = O(n^2)) --------- (3)
+
+Therfore, overall complexity in this case = O(n + nlogn + n^2) = O(n(logn + n)) [not considering lower order complexity and constants]
+
+
+A.2. If j is larger than the greatest element in array A, j belongs to the heap:
+i.  append j to the end of heap H
+ii. check conditions and bubble up if required                             (complexity = O(nlogn)) --------- (4)
+
+Therfore, overall complexity in this case = O(n + nlogn) = O(nlogn) [not considering lower order complexity and constants]
+
+
+
+(B) Deletion Algorithm
+
+ASSUMING THE HEAP IS NOT empty
+Compare if j to k     (complexity = O(n)) --------- (1)
+
+B.1. if index j=(k-1) 
+i.   pop the last item of the array A without reducing the size of A                       
+ii.  bring H[0], i.e. the least item from the heap to A[k-1], i.e. the empty position in A 
+iii. check the heap H and bubble up/down if required to keep it a heap                      (complexity = O(nlogn)) --------- (2)
+iv.  reduce the size of heap H (last position is empty now)                                 
+
+Therefore, overall complexity in this case = O(n + nlogn) = O(nlogn) [not considering lower order complexity and constants]
+
+
+B.2. if index j<(k-1)
+i.   move all the elements (greater than index j) of A to one previous index. leaving one empty space in array A
+ii.  copy the first element of heap H to the last index of array A 
+iii. move all the elements of H to one previous index
+iv.  heap sort H                                                                            (complexity = O(nlogn)) --------- (3)       
+
+Therefore, overall complexity in this case = O(n + nlogn) = O(nlogn) [not considering lower order complexity and constants]
